@@ -1,0 +1,11 @@
+Case 1 'Create MainShowViewController':
+    - add circle button on view center;
+    - add transition to UsersListShowTableViewController by tap on button;
+    - add Autolayouts in code;
+    - add localization.
+
+Case 2 'Create UsersListShowTableViewController':
+- add UINavigationViewController;
+- add Back button;
+- add title;
+
