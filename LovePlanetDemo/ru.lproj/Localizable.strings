@@ -1,9 +1,21 @@
+/* Acs */
+"A-Z" = "А-Я";
+
 /* Back button */
 "Close" = "Закрыть";
+
+/* Create User mode title */
+"Create User" = "Просмотр";
+
+/* Edit User mode title */
+"Edit User" = "Редактирование";
 
 /* Start action button */
 "Start" = "Старт";
 
 /* Users list title */
 "Users List" = "Список сотрудников";
+
+/* Desc */
+"Z-A" = "Я-А";
 

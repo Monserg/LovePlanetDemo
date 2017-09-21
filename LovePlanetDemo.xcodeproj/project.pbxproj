@@ -25,6 +25,16 @@
 		B17064A21F73AE8700FABD11 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B17064A41F73AE8700FABD11 /* InfoPlist.strings */; };
 		B17064A71F73AE8900FABD11 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B17064A91F73AE8900FABD11 /* Localizable.strings */; };
 		B17064AC1F73BDCE00FABD11 /* TriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17064AB1F73BDCE00FABD11 /* TriangleView.swift */; };
+		B17064BC1F73E5ED00FABD11 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B17064BA1F73E5ED00FABD11 /* Model.xcdatamodeld */; };
+		B17064C41F73F42900FABD11 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17064B91F73E5CB00FABD11 /* CoreDataManager.swift */; };
+		B17064C71F73F6AD00FABD11 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17064C51F73F6AD00FABD11 /* User+CoreDataClass.swift */; };
+		B17064C81F73F6AD00FABD11 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17064C61F73F6AD00FABD11 /* User+CoreDataProperties.swift */; };
+		B17064D01F74082100FABD11 /* UserShowInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17064CA1F74082100FABD11 /* UserShowInteractor.swift */; };
+		B17064D11F74082100FABD11 /* UserShowModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17064CB1F74082100FABD11 /* UserShowModels.swift */; };
+		B17064D21F74082100FABD11 /* UserShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17064CC1F74082100FABD11 /* UserShowPresenter.swift */; };
+		B17064D31F74082100FABD11 /* UserShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17064CD1F74082100FABD11 /* UserShowRouter.swift */; };
+		B17064D41F74082100FABD11 /* UserShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17064CE1F74082100FABD11 /* UserShowViewController.swift */; };
+		B17064D51F74082100FABD11 /* UserShowWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17064CF1F74082100FABD11 /* UserShowWorker.swift */; };
 		B1AE83FE1F738B8C00F91406 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AE83FD1F738B8C00F91406 /* AppDelegate.swift */; };
 		B1AE84051F738B8C00F91406 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1AE84041F738B8C00F91406 /* Assets.xcassets */; };
 		B1AE84081F738B8C00F91406 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1AE84061F738B8C00F91406 /* LaunchScreen.storyboard */; };
@@ -53,6 +63,17 @@
 		B17064A81F73AE8900FABD11 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B17064AA1F73AE9C00FABD11 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B17064AB1F73BDCE00FABD11 /* TriangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleView.swift; sourceTree = "<group>"; };
+		B17064B91F73E5CB00FABD11 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		B17064BB1F73E5ED00FABD11 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		B17064BF1F73E8C800FABD11 /* Model 1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 1.xcdatamodel"; sourceTree = "<group>"; };
+		B17064C51F73F6AD00FABD11 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B17064C61F73F6AD00FABD11 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B17064CA1F74082100FABD11 /* UserShowInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserShowInteractor.swift; sourceTree = "<group>"; };
+		B17064CB1F74082100FABD11 /* UserShowModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserShowModels.swift; sourceTree = "<group>"; };
+		B17064CC1F74082100FABD11 /* UserShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserShowPresenter.swift; sourceTree = "<group>"; };
+		B17064CD1F74082100FABD11 /* UserShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserShowRouter.swift; sourceTree = "<group>"; };
+		B17064CE1F74082100FABD11 /* UserShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserShowViewController.swift; sourceTree = "<group>"; };
+		B17064CF1F74082100FABD11 /* UserShowWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserShowWorker.swift; sourceTree = "<group>"; };
 		B1AE83FA1F738B8C00F91406 /* LovePlanetDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LovePlanetDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1AE83FD1F738B8C00F91406 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1AE84041F738B8C00F91406 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -93,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				B17064821F738E9500FABD11 /* MainShow */,
+				B17064C91F7407F900FABD11 /* UserShow */,
 				B170648F1F738EF700FABD11 /* UsersListShow */,
 			);
 			path = Scenes;
@@ -127,10 +149,43 @@
 		B17064901F7390D100FABD11 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B17064B71F73E5B100FABD11 /* CoreData */,
 				B17064911F73911000FABD11 /* CircleButton.swift */,
 				B17064AB1F73BDCE00FABD11 /* TriangleView.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		B17064B71F73E5B100FABD11 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				B17064B81F73E5BB00FABD11 /* Models */,
+				B17064B91F73E5CB00FABD11 /* CoreDataManager.swift */,
+				B17064BA1F73E5ED00FABD11 /* Model.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		B17064B81F73E5BB00FABD11 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B17064C51F73F6AD00FABD11 /* User+CoreDataClass.swift */,
+				B17064C61F73F6AD00FABD11 /* User+CoreDataProperties.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B17064C91F7407F900FABD11 /* UserShow */ = {
+			isa = PBXGroup;
+			children = (
+				B17064CA1F74082100FABD11 /* UserShowInteractor.swift */,
+				B17064CB1F74082100FABD11 /* UserShowModels.swift */,
+				B17064CC1F74082100FABD11 /* UserShowPresenter.swift */,
+				B17064CD1F74082100FABD11 /* UserShowRouter.swift */,
+				B17064CE1F74082100FABD11 /* UserShowViewController.swift */,
+				B17064CF1F74082100FABD11 /* UserShowWorker.swift */,
+			);
+			path = UserShow;
 			sourceTree = "<group>";
 		};
 		B1AE83F11F738B8C00F91406 = {
@@ -300,18 +355,28 @@
 			files = (
 				B170648B1F738EAF00FABD11 /* MainShowPresenter.swift in Sources */,
 				B170649B1F73A27F00FABD11 /* UsersListShowPresenter.swift in Sources */,
+				B17064D21F74082100FABD11 /* UserShowPresenter.swift in Sources */,
 				B170648E1F738EAF00FABD11 /* MainShowWorker.swift in Sources */,
+				B17064C41F73F42900FABD11 /* CoreDataManager.swift in Sources */,
 				B170648A1F738EAF00FABD11 /* MainShowModels.swift in Sources */,
 				B170649C1F73A27F00FABD11 /* UsersListShowRouter.swift in Sources */,
 				B170649E1F73A27F00FABD11 /* UsersListShowWorker.swift in Sources */,
 				B170649A1F73A27F00FABD11 /* UsersListShowModels.swift in Sources */,
+				B17064D11F74082100FABD11 /* UserShowModels.swift in Sources */,
 				B170649D1F73A27F00FABD11 /* UsersListShowViewController.swift in Sources */,
+				B17064BC1F73E5ED00FABD11 /* Model.xcdatamodeld in Sources */,
+				B17064D01F74082100FABD11 /* UserShowInteractor.swift in Sources */,
 				B17064921F73911000FABD11 /* CircleButton.swift in Sources */,
 				B17064891F738EAF00FABD11 /* MainShowInteractor.swift in Sources */,
 				B17064AC1F73BDCE00FABD11 /* TriangleView.swift in Sources */,
+				B17064C71F73F6AD00FABD11 /* User+CoreDataClass.swift in Sources */,
 				B170648C1F738EAF00FABD11 /* MainShowRouter.swift in Sources */,
 				B170648D1F738EAF00FABD11 /* MainShowViewController.swift in Sources */,
+				B17064D51F74082100FABD11 /* UserShowWorker.swift in Sources */,
+				B17064C81F73F6AD00FABD11 /* User+CoreDataProperties.swift in Sources */,
+				B17064D31F74082100FABD11 /* UserShowRouter.swift in Sources */,
 				B17064991F73A27F00FABD11 /* UsersListShowInteractor.swift in Sources */,
+				B17064D41F74082100FABD11 /* UserShowViewController.swift in Sources */,
 				B1AE83FE1F738B8C00F91406 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,6 +576,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B17064BA1F73E5ED00FABD11 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B17064BF1F73E8C800FABD11 /* Model 1.xcdatamodel */,
+				B17064BB1F73E5ED00FABD11 /* Model.xcdatamodel */,
+			);
+			currentVersion = B17064BF1F73E8C800FABD11 /* Model 1.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B1AE83F21F738B8C00F91406 /* Project object */;
 }

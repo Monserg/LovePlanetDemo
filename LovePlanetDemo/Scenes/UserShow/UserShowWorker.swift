@@ -1,5 +1,5 @@
 //
-//  UsersListShowWorker.swift
+//  UserShowWorker.swift
 //  LovePlanetDemo
 //
 //  Created by msm72 on 21.09.17.
@@ -12,9 +12,8 @@
 
 import UIKit
 
-class UsersListShowWorker {
+class UserShowWorker {
     // MARK: - Business Logic
-    func usersListClear() {
-        CoreDataManager.instance.entitiesRemove(byName: "User", andPredicateParameters: nil)
+    func doSomeWork() {
     }
 }

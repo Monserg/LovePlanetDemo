@@ -1,5 +1,5 @@
 //
-//  UsersListShowModels.swift
+//  UserShowModels.swift
 //  LovePlanetDemo
 //
 //  Created by msm72 on 21.09.17.
@@ -13,19 +13,16 @@
 import UIKit
 
 // MARK: - Data models
-enum UsersListShowModels {
+enum UserShowModels {
     // MARK: - Use cases
-    enum Users {
+    enum User {
         struct RequestModel {
-            let sortIndex: Int
         }
         
         struct ResponseModel {
-            let dataSource: [User]
         }
         
         struct ViewModel {
-            let dataSource: [User]
         }
     }
 }

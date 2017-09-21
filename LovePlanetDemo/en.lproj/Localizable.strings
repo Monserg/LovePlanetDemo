@@ -6,3 +6,15 @@
 
 /* Users list title */
 "Users List" = "Users List";
+
+/* Acs */
+"A-Z" = "A-Z";
+
+/* Desc */
+"Z-A" = "Z-A";
+
+/* Create User mode title */
+"Create User" = "Create User";
+
+/* Edit User mode title */
+"Edit User" = "Edit User";

@@ -1,4 +1,4 @@
-//
+
 //  UsersListShowInteractor.swift
 //  LovePlanetDemo
 //
@@ -11,29 +11,44 @@
 //
 
 import UIKit
+import CoreData
 
 // MARK: - Business Logic protocols
 protocol UsersListShowBusinessLogic {
-    func doSomething(request: UsersListShowModels.Something.RequestModel)
+    func usersListLoad(withRequestModel requestModel: UsersListShowModels.Users.RequestModel)
 }
 
 protocol UsersListShowDataStore {
-    //var name: String { get set }
+    var dataSource: [User] { get set }
 }
 
 class UsersListShowInteractor: UsersListShowBusinessLogic, UsersListShowDataStore {
     // MARK: - Properties
     var presenter: UsersListShowPresentationLogic?
     var worker: UsersListShowWorker?
-    //var name: String = ""
+    var dataSource: [User] = [User]()
     
     
     // MARK: - Business logic implementation
-    func doSomething(request: UsersListShowModels.Something.RequestModel) {
+    func usersListLoad(withRequestModel requestModel: UsersListShowModels.Users.RequestModel) {
         worker = UsersListShowWorker()
-        worker?.doSomeWork()
         
-        let responseModel = UsersListShowModels.Something.ResponseModel()
-        presenter?.presentSomething(response: responseModel)
+//        worker?.usersListClear()
+        
+        if let usersList = CoreDataManager.instance.entitiesLoad(byName: "User", andSortParameter: requestModel.sortIndex) as? [User], usersList.count > 0 {
+            dataSource = usersList
+        } else {
+            // Add new users to CoreData
+            for i in 0...29 {
+                let userEntity = CoreDataManager.instance.entityCreate(byName: "User") as! User
+                userEntity.setup(codeID: "\(i)", firstName: "Stepan", lastName: "Sidorov \(i)", isMale: true, birthday: NSDate())
+                CoreDataManager.instance.contextSave()
+                dataSource.append(userEntity)
+            }
+        }
+        
+        
+        let responseModel = UsersListShowModels.Users.ResponseModel(dataSource: dataSource)
+        presenter?.usersListPreparePresent(fromResponseModel: responseModel)
     }
 }

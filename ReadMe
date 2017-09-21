@@ -9,7 +9,20 @@ Case 2 'Create Triangle view':
     - create triangle move by arc.
 
 Case 3 'Create UsersListShowTableViewController':
-- add UINavigationViewController;
-- add Back button;
-- add title;
+    - add UINavigationViewController;
+    - add Back button;
+    - add title;
+    - add sort UISegmentedControl;
+    - create CoreDataManager;
+    - create UserShow VIP-cycle;
+    - add transition to UserShowViewController by tap on Add button;
+    - add back transition;
+    - add transition to UserShowViewController by select table row;
+    - add localization;
+    - add Save button.
+
+Case 4 'Delete User':
+    - create Delete selected user by swipe.
+
+
 

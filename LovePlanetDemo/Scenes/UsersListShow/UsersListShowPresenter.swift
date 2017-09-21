@@ -14,7 +14,7 @@ import UIKit
 
 // MARK: - Presentation Logic protocols
 protocol UsersListShowPresentationLogic {
-    func presentSomething(response: UsersListShowModels.Something.ResponseModel)
+    func usersListPreparePresent(fromResponseModel responseModel: UsersListShowModels.Users.ResponseModel)
 }
 
 class UsersListShowPresenter: UsersListShowPresentationLogic {
@@ -23,8 +23,8 @@ class UsersListShowPresenter: UsersListShowPresentationLogic {
     
     
     // MARK: - Presentation Logic implementation
-    func presentSomething(response: UsersListShowModels.Something.ResponseModel) {
-        let viewModel = UsersListShowModels.Something.ViewModel()
-        viewController?.displaySomething(viewModel: viewModel)
+    func usersListPreparePresent(fromResponseModel responseModel: UsersListShowModels.Users.ResponseModel) {
+        let viewModel = UsersListShowModels.Users.ViewModel(dataSource: responseModel.dataSource)
+        viewController?.usersListPresent(fromViewModel: viewModel)
     }
 }

@@ -14,7 +14,7 @@ import UIKit
 
 // MARK: - Input & Output protocols
 protocol UsersListShowDisplayLogic: class {
-    func displaySomething(viewModel: UsersListShowModels.Something.ViewModel)
+    func usersListPresent(fromViewModel viewModel: UsersListShowModels.Users.ViewModel)
 }
 
 class UsersListShowViewController: UITableViewController {
@@ -22,6 +22,10 @@ class UsersListShowViewController: UITableViewController {
     var interactor: UsersListShowBusinessLogic?
     var router: (NSObjectProtocol & UsersListShowRoutingLogic & UsersListShowDataPassing)?
     
+    var sortSegmentedControl: UISegmentedControl!
+    var usersList: [User] = []
+    var selectedIndex = 0
+
     
     // MARK: - IBOutlets
     // @IBOutlet weak var nameTextField: UITextField!
@@ -93,9 +97,9 @@ class UsersListShowViewController: UITableViewController {
                                                                       target: self,
                                                                       action: #selector(handlerAddButtonTap(_:)))
         
-        let requestModel = UsersListShowModels.Something.RequestModel()
-        
-        interactor?.doSomething(request: requestModel)
+        // Check users list
+        let requestModel = UsersListShowModels.Users.RequestModel(sortIndex: selectedIndex)
+        interactor?.usersListLoad(withRequestModel: requestModel)
     }
     
     
@@ -105,14 +109,86 @@ class UsersListShowViewController: UITableViewController {
     }
     
     @objc func handlerAddButtonTap(_ sender: UIBarButtonItem) {
+        router?.routeToUserShowScene()
+    }
+    
+    @objc func handlerSegmentedValueChanged(_ sender: UISegmentedControl) {
+        selectedIndex = sender.selectedSegmentIndex
+        let requestModel = UsersListShowModels.Users.RequestModel(sortIndex: selectedIndex)
+        interactor?.usersListLoad(withRequestModel: requestModel)
+    }
+}
 
+
+// MARK: - UITableViewDataSource
+extension UsersListShowViewController {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return usersList.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellIdentifier = "Cell"
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
+        let user = usersList[indexPath.row]
+        
+        cell.textLabel?.text = user.lastName
+        cell.detailTextLabel?.text = user.firstName
+        
+        return cell
+    }
+}
+
+
+// MARK: - UITableViewDelegate
+extension UsersListShowViewController {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 54
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView.init(frame: CGRect.init(origin: .zero, size: CGSize.init(width: tableView.frame.width, height: 54)))
+        
+        // Create sort segmented control
+        sortSegmentedControl = UISegmentedControl.init(items: [NSLocalizedString("A-Z", comment: "Acs"), NSLocalizedString("Z-A", comment: "Desc")])
+        sortSegmentedControl.frame = CGRect.init(origin: .zero, size: .zero)
+        sortSegmentedControl.selectedSegmentIndex = selectedIndex
+        sortSegmentedControl.addTarget(self, action: #selector(handlerSegmentedValueChanged(_:)), for: .valueChanged)
+       
+        headerView.addSubview(sortSegmentedControl)
+
+        sortSegmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        sortSegmentedControl.widthAnchor.constraint(equalToConstant: 250).isActive = true
+        sortSegmentedControl.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        sortSegmentedControl.centerXAnchor.constraint(equalTo: headerView.centerXAnchor).isActive = true
+        sortSegmentedControl.centerYAnchor.constraint(equalTo: headerView.centerYAnchor).isActive = true
+
+        return headerView
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        router?.routeToUserShowScene()
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        
     }
 }
 
 
 // MARK: - UsersListShowDisplayLogic
 extension UsersListShowViewController: UsersListShowDisplayLogic {
-    func displaySomething(viewModel: UsersListShowModels.Something.ViewModel) {
-        // NOTE: Display the result from the Presenter
+    func usersListPresent(fromViewModel viewModel: UsersListShowModels.Users.ViewModel) {
+        // Display the result from the Presenter
+        usersList = viewModel.dataSource
+        tableView.reloadData()
     }
 }

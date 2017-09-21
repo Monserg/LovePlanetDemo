@@ -21,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = MainShowViewController()
         self.window?.makeKeyAndVisible()
 
+        // Get CoreData path
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        print(urls[urls.count - 1] as URL)
+
         return true
     }
     

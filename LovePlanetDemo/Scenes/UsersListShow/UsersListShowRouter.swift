@@ -14,7 +14,7 @@ import UIKit
 
 // MARK: - Input & Output protocols
 @objc protocol UsersListShowRoutingLogic {
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToUserShowScene()
 }
 
 protocol UsersListShowDataPassing {
@@ -28,29 +28,28 @@ class UsersListShowRouter: NSObject, UsersListShowRoutingLogic, UsersListShowDat
     
     
     // MARK: - Routing
-    //func routeToSomewhere(segue: UIStoryboardSegue?) {
-    //  if let segue = segue {
-    //    let destinationVC = segue.destination as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //  } else {
-    //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-    //  }
-    //}
+    func routeToUserShowScene() {
+        let destinationVC = UserShowViewController()
+        var destinationDS = destinationVC.router!.dataStore!
+        passDataToUserShowScene(source: dataStore!, destination: &destinationDS)
+        navigateToUserShowScene(source: viewController!, destination: destinationVC)
+    }
     
     
     // MARK: - Navigation
-    //func navigateToSomewhere(source: UsersListShowViewController, destination: SomewhereViewController) {
-    //  source.show(destination, sender: nil)
-    //}
+    func navigateToUserShowScene(source: UsersListShowViewController, destination: UserShowViewController) {
+        source.navigationController?.pushViewController(destination, animated: true)
+    }
     
     
     // MARK: - Passing data
-    //func passDataToSomewhere(source: UsersListShowDataStore, destination: inout SomewhereDataStore) {
-    //  destination.name = source.name
-    //}
+    func passDataToUserShowScene(source: UsersListShowDataStore, destination: inout UserShowDataStore) {
+        let selectedRow = viewController?.tableView.indexPathForSelectedRow?.row
+        
+        guard selectedRow != nil else {
+            return
+        }
+        
+        destination.user = source.dataSource[selectedRow!]
+    }
 }
