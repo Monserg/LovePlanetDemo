@@ -4,7 +4,11 @@ Case 1 'Create MainShowViewController':
     - add Autolayouts in code;
     - add localization.
 
-Case 2 'Create UsersListShowTableViewController':
+Case 2 'Create Triangle view':
+    - add triangle to view;
+    - create triangle move by arc.
+
+Case 3 'Create UsersListShowTableViewController':
 - add UINavigationViewController;
 - add Back button;
 - add title;

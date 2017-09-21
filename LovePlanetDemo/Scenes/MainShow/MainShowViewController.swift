@@ -11,6 +11,7 @@
 //
 
 import UIKit
+import TweenKit
 
 // MARK: - Input & Output protocols
 protocol MainShowDisplayLogic: class {
@@ -22,6 +23,8 @@ class MainShowViewController: UIViewController {
     var interactor: MainShowBusinessLogic?
     var router: (NSObjectProtocol & MainShowRoutingLogic & MainShowDataPassing)?
     
+    private let scheduler = ActionScheduler()
+
     
     // MARK: - IBOutlets
     // @IBOutlet weak var nameTextField: UITextField!
@@ -90,10 +93,40 @@ class MainShowViewController: UIViewController {
         circleButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         circleButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
+        // Create Triangle
+        let triangleView = TriangleView.init(frame: CGRect.init(origin: .zero, size: CGSize(width: 130, height: 130)))
+        view.addSubview(triangleView)
+        startAnimation(sender: triangleView)
+
         let requestModel = MainShowModels.Something.RequestModel()
         interactor?.doSomething(request: requestModel)
     }
     
+    private func startAnimation(sender: TriangleView) {
+        let action1 = ArcAction(center: self.view.center,
+                               radius: Double((self.view.frame.width - sender.frame.width) / 2),
+                               startDegrees: -90,
+                               endDegrees: 90,
+                               duration: 2.3) { [unowned sender] in
+                                sender.center = $0
+        }
+        
+        let action2 = ArcAction(center: self.view.center,
+                                radius: Double((self.view.frame.width - sender.frame.width) / 2),
+                                startDegrees: 90,
+                                endDegrees: -90,
+                                duration: 2.3) { [unowned sender] in
+                                    sender.center = $0
+        }
+
+        action1.easing = .exponentialInOut
+        action2.easing = .exponentialInOut
+
+        // Repeat forever
+        let moveTwice = ActionSequence(actions: action1, action2).repeatedForever()
+        scheduler.run(action: moveTwice)
+    }
+
     
     // MARK: - Actions
     @objc func handlerButtonTouchDown(_ sender: CircleButton) {
