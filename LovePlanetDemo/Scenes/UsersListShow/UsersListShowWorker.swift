@@ -17,4 +17,8 @@ class UsersListShowWorker {
     func usersListClear() {
         CoreDataManager.instance.entitiesRemove(byName: "User", andPredicateParameters: nil)
     }
+
+    func userDelete(withCodeID codeID: String) {
+        CoreDataManager.instance.entitiesRemove(byName: "User", andPredicateParameters: NSPredicate.init(format: "codeID = %@", codeID))
+    }
 }

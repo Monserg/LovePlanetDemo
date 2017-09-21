@@ -15,6 +15,7 @@ import UIKit
 // MARK: - Input & Output protocols
 protocol UsersListShowDisplayLogic: class {
     func usersListPresent(fromViewModel viewModel: UsersListShowModels.Users.ViewModel)
+    func userDeletePresent(fromViewModel viewModel: UsersListShowModels.Users.ViewModel)
 }
 
 class UsersListShowViewController: UITableViewController {
@@ -178,8 +179,16 @@ extension UsersListShowViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let removedUser = usersList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            let requestModel = UsersListShowModels.Users.RequestModel(sortIndex: Int(removedUser.codeID)!)
+            interactor?.userDelete(withRequestModel: requestModel)
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        }
     }
 }
 
@@ -188,7 +197,11 @@ extension UsersListShowViewController {
 extension UsersListShowViewController: UsersListShowDisplayLogic {
     func usersListPresent(fromViewModel viewModel: UsersListShowModels.Users.ViewModel) {
         // Display the result from the Presenter
-        usersList = viewModel.dataSource
+        usersList = viewModel.dataSource!
         tableView.reloadData()
+    }
+    
+    func userDeletePresent(fromViewModel viewModel: UsersListShowModels.Users.ViewModel) {
+        // Display the result from the Presenter
     }
 }

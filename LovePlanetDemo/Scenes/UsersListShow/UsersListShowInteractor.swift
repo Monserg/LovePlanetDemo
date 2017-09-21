@@ -16,6 +16,7 @@ import CoreData
 // MARK: - Business Logic protocols
 protocol UsersListShowBusinessLogic {
     func usersListLoad(withRequestModel requestModel: UsersListShowModels.Users.RequestModel)
+    func userDelete(withRequestModel requestModel: UsersListShowModels.Users.RequestModel)
 }
 
 protocol UsersListShowDataStore {
@@ -33,6 +34,7 @@ class UsersListShowInteractor: UsersListShowBusinessLogic, UsersListShowDataStor
     func usersListLoad(withRequestModel requestModel: UsersListShowModels.Users.RequestModel) {
         worker = UsersListShowWorker()
         
+        // Use by clean CoreData
 //        worker?.usersListClear()
         
         if let usersList = CoreDataManager.instance.entitiesLoad(byName: "User", andSortParameter: requestModel.sortIndex) as? [User], usersList.count > 0 {
@@ -47,8 +49,17 @@ class UsersListShowInteractor: UsersListShowBusinessLogic, UsersListShowDataStor
             }
         }
         
-        
         let responseModel = UsersListShowModels.Users.ResponseModel(dataSource: dataSource)
         presenter?.usersListPreparePresent(fromResponseModel: responseModel)
+    }
+    
+    func userDelete(withRequestModel requestModel: UsersListShowModels.Users.RequestModel) {
+        worker = UsersListShowWorker()
+        
+        worker?.userDelete(withCodeID: "\(requestModel.sortIndex)")
+        CoreDataManager.instance.contextSave()
+        
+        let responseModel = UsersListShowModels.Users.ResponseModel(dataSource: dataSource)
+        presenter?.userDeletePreparePresent(fromResponseModel: responseModel)
     }
 }

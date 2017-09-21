@@ -22,7 +22,8 @@ Case 3 'Create UsersListShowTableViewController':
     - add Save button.
 
 Case 4 'Delete User':
-    - create Delete selected user by swipe.
+    - create Delete selected user by swipe;
+    - delete User from CoreData.
 
 
 

@@ -21,11 +21,11 @@ enum UsersListShowModels {
         }
         
         struct ResponseModel {
-            let dataSource: [User]
+            let dataSource: [User]?
         }
         
         struct ViewModel {
-            let dataSource: [User]
+            let dataSource: [User]?
         }
     }
 }
