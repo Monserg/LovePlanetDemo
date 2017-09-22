@@ -43,7 +43,7 @@ class UsersListShowInteractor: UsersListShowBusinessLogic, UsersListShowDataStor
             // Add new users to CoreData
             for i in 0...29 {
                 let userEntity = CoreDataManager.instance.entityCreate(byName: "User") as! User
-                userEntity.setup(codeID: "\(i)", firstName: "Stepan", lastName: "Sidorov \(i)", isMale: true, birthday: NSDate())
+                userEntity.setup(codeID: Int16(i), firstName: "Stepan", lastName: "Sidorov \(i)", isFemale: true, birthday: NSDate())
                 CoreDataManager.instance.contextSave()
                 dataSource.append(userEntity)
             }

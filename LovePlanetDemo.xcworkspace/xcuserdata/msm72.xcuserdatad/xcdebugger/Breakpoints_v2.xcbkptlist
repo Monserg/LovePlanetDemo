@@ -9,29 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LovePlanetDemo/Scenes/UserShow/UserShowViewController.swift"
-            timestampString = "527702800.22758"
+            filePath = "LovePlanetDemo/Common/CoreData/CoreDataManager.swift"
+            timestampString = "527758410.441077"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "userSavePresent(fromViewModel:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LovePlanetDemo/Scenes/UserShow/UserShowViewController.swift"
-            timestampString = "527702800.227668"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "userCreatePresent(fromViewModel:)"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "entityLoadCodeIDMax(byName:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -2,7 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="birthday" attributeType="Date" defaultDateTimeInterval="527691300" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="codeID" attributeType="String" syncable="YES"/>
+        <attribute name="codeID" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="firstName" attributeType="String" defaultValueString="Zorro" syncable="YES"/>
         <attribute name="isFemale" attributeType="Boolean" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="lastName" attributeType="String" defaultValueString="Zorro" syncable="YES"/>

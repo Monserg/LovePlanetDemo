@@ -144,8 +144,21 @@ class CoreDataManager {
         }
     }
 
-    func entityBy(_ name: String, andCodeID codeID: String) -> NSManagedObject? {
-        return CoreDataManager.instance.entityLoad(byName: name, andPredicateParameters: NSPredicate.init(format: "codeID = %@", codeID))
+    func entityLoadCodeIDMax(byName name: String) -> Int16 {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: name)
+        let sortDescriptor = NSSortDescriptor(key: "codeID", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        fetchRequest.fetchLimit = 1
+
+        do {
+            return try (CoreDataManager.instance.managedObjectContext.fetch(fetchRequest).first as! User).codeID
+        } catch _ {
+            return 999
+        }
+    }
+    
+    func entityBy(_ name: String, andCodeID codeID: Int16) -> NSManagedObject? {
+        return CoreDataManager.instance.entityLoad(byName: name, andPredicateParameters: NSPredicate.init(format: "codeID = %@", "\(codeID)"))
     }
 
     func entityCreate(byName name: String) -> NSManagedObject? {

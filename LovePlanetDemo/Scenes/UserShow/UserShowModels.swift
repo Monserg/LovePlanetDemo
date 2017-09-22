@@ -14,9 +14,20 @@ import UIKit
 
 // MARK: - Data models
 enum UserShowModels {
+    // MARK: - User info
+    struct UserFormFields {
+        var codeID: Int16?
+        var firstName: String
+        var lastName: String
+        var isFemale: Bool
+        var birthday: Date
+    }
+    
+
     // MARK: - Use cases
     enum User {
         struct RequestModel {
+            let formFields: UserFormFields
         }
         
         struct ResponseModel {

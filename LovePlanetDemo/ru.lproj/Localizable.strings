@@ -10,6 +10,18 @@
 /* Edit User mode title */
 "Edit User" = "Редактирование";
 
+/* Text field placeholder */
+"Enter First Name" = "Введите имя";
+
+/* Text field placeholder */
+"Enter Last Name" = "Введите фамилию";
+
+/* Female gender comment */
+"I'm female" = "Я женщина";
+
+/* Male gender comment */
+"I'm male" = "Я мужчина";
+
 /* Start action button */
 "Start" = "Старт";
 

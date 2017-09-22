@@ -81,6 +81,14 @@ class UsersListShowViewController: UITableViewController {
         viewSettingsDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Check users list
+        let requestModel = UsersListShowModels.Users.RequestModel(sortIndex: selectedIndex)
+        interactor?.usersListLoad(withRequestModel: requestModel)
+    }
+    
     
     // MARK: - Custom Functions
     func viewSettingsDidLoad() {
@@ -97,10 +105,6 @@ class UsersListShowViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add,
                                                                       target: self,
                                                                       action: #selector(handlerAddButtonTap(_:)))
-        
-        // Check users list
-        let requestModel = UsersListShowModels.Users.RequestModel(sortIndex: selectedIndex)
-        interactor?.usersListLoad(withRequestModel: requestModel)
     }
     
     
@@ -184,7 +188,7 @@ extension UsersListShowViewController {
             let removedUser = usersList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             
-            let requestModel = UsersListShowModels.Users.RequestModel(sortIndex: Int(removedUser.codeID)!)
+            let requestModel = UsersListShowModels.Users.RequestModel(sortIndex: Int(removedUser.codeID))
             interactor?.userDelete(withRequestModel: requestModel)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.

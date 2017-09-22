@@ -74,6 +74,7 @@
 		B17064CD1F74082100FABD11 /* UserShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserShowRouter.swift; sourceTree = "<group>"; };
 		B17064CE1F74082100FABD11 /* UserShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserShowViewController.swift; sourceTree = "<group>"; };
 		B17064CF1F74082100FABD11 /* UserShowWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserShowWorker.swift; sourceTree = "<group>"; };
+		B197A80E1F74EB7C006E18BA /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
 		B1AE83FA1F738B8C00F91406 /* LovePlanetDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LovePlanetDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1AE83FD1F738B8C00F91406 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1AE84041F738B8C00F91406 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -335,10 +336,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LovePlanetDemo/Pods-LovePlanetDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/LTHRadioButton/LTHRadioButton.framework",
 				"${BUILT_PRODUCTS_DIR}/TweenKit/TweenKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LTHRadioButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TweenKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -581,10 +584,11 @@
 		B17064BA1F73E5ED00FABD11 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				B197A80E1F74EB7C006E18BA /* Model 2.xcdatamodel */,
 				B17064BF1F73E8C800FABD11 /* Model 1.xcdatamodel */,
 				B17064BB1F73E5ED00FABD11 /* Model.xcdatamodel */,
 			);
-			currentVersion = B17064BF1F73E8C800FABD11 /* Model 1.xcdatamodel */;
+			currentVersion = B197A80E1F74EB7C006E18BA /* Model 2.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -25,5 +25,9 @@ Case 4 'Delete User':
     - create Delete selected user by swipe;
     - delete User from CoreData.
 
-
+Case 5 'Create UserShowViewController':
+    - create design in code;
+    - add transitions between fields;
+    - add Create and Update CoreDataManager methods;
+    - load new data in UsersListShowViewController.
 

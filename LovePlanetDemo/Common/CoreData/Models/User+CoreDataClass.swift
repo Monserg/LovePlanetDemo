@@ -13,11 +13,11 @@ import CoreData
 @objc(User)
 public class User: NSManagedObject {
     // MARK: - Class Initialization
-    func setup(codeID: String, firstName: String, lastName: String, isMale: Bool, birthday: NSDate) {
+    func setup(codeID: Int16, firstName: String, lastName: String, isFemale: Bool, birthday: NSDate) {
         self.codeID = codeID
         self.firstName = firstName
         self.lastName = lastName
-        self.isMale = isMale
+        self.isFemale = isFemale
         self.birthday = birthday
     }
     

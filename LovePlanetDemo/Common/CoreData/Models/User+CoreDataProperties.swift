@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.swift
 //  LovePlanetDemo
 //
-//  Created by msm72 on 21.09.17.
+//  Created by msm72 on 22.09.17.
 //  Copyright © 2017 RemoteJob. All rights reserved.
 //
 //
@@ -18,9 +18,9 @@ extension User {
     }
 
     @NSManaged public var birthday: NSDate
-    @NSManaged public var codeID: String
+    @NSManaged public var codeID: Int16
     @NSManaged public var firstName: String
-    @NSManaged public var isMale: Bool
+    @NSManaged public var isFemale: Bool
     @NSManaged public var lastName: String
 
 }

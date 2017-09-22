@@ -32,7 +32,14 @@ class UserShowInteractor: UserShowBusinessLogic, UserShowDataStore {
     // MARK: - Business logic implementation
     func userSave(withRequestModel requestModel: UserShowModels.User.RequestModel) {
         worker = UserShowWorker()
-        worker?.doSomeWork()
+
+        let userEntity = CoreDataManager.instance.entityBy("User", andCodeID: requestModel.formFields.codeID!) as! User
+        userEntity.firstName = requestModel.formFields.firstName
+        userEntity.lastName = requestModel.formFields.lastName
+        userEntity.isFemale = requestModel.formFields.isFemale
+        userEntity.birthday = requestModel.formFields.birthday as NSDate
+        
+        CoreDataManager.instance.contextSave()
         
         let responseModel = UserShowModels.User.ResponseModel()
         presenter?.userSavePreparePresent(fromResponseModel: responseModel)
@@ -40,8 +47,17 @@ class UserShowInteractor: UserShowBusinessLogic, UserShowDataStore {
 
     func userCreate(withRequestModel requestModel: UserShowModels.User.RequestModel) {
         worker = UserShowWorker()
-        worker?.doSomeWork()
+
+        let codeID = CoreDataManager.instance.entityLoadCodeIDMax(byName: "User")
+        let userEntity = CoreDataManager.instance.entityCreate(byName: "User") as! User
+        userEntity.codeID = codeID + 1
+        userEntity.firstName = requestModel.formFields.firstName
+        userEntity.lastName = requestModel.formFields.lastName
+        userEntity.isFemale = requestModel.formFields.isFemale
+        userEntity.birthday = requestModel.formFields.birthday as NSDate
         
+        CoreDataManager.instance.contextSave()
+
         let responseModel = UserShowModels.User.ResponseModel()
         presenter?.userCreatePreparePresent(fromResponseModel: responseModel)
     }

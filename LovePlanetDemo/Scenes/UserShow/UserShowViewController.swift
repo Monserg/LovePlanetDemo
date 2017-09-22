@@ -11,6 +11,7 @@
 //
 
 import UIKit
+import LTHRadioButton
 
 // MARK: - Input & Output protocols
 protocol UserShowDisplayLogic: class {
@@ -23,10 +24,95 @@ class UserShowViewController: UIViewController {
     var interactor: UserShowBusinessLogic?
     var router: (NSObjectProtocol & UserShowRoutingLogic & UserShowDataPassing)?
     
+    private lazy var firstNameTextField: UITextField = {
+        let textField = textFieldCreate()
+        textField.placeholder = NSLocalizedString("Enter First Name", comment: "Text field placeholder")
+        textField.returnKeyType = .next
+        
+        NSLayoutConstraint.activate([
+                                        textField.topAnchor.constraint(equalTo: view.topAnchor, constant: 94),
+                                        textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+                                        textField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
+                                    ])
+
+        return textField
+    }()
     
-    // MARK: - IBOutlets
-    // @IBOutlet weak var nameTextField: UITextField!
+    private lazy var lastNameTextField: UITextField = {
+        // Create last name text field
+        let textField = textFieldCreate()
+        textField.placeholder = NSLocalizedString("Enter Last Name", comment: "Text field placeholder")
+        textField.returnKeyType = .continue
+        
+        NSLayoutConstraint.activate([
+                                        textField.topAnchor.constraint(equalTo: firstNameTextField.bottomAnchor, constant: 20),
+                                        textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+                                        textField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
+                                    ])
+        
+        return textField
+    }()
     
+    private lazy var femaleRadioButton: LTHRadioButton = {
+        let radioButton = LTHRadioButton(diameter: 34, selectedColor: UIColor.blue, deselectedColor: UIColor.black)
+        view.addSubview(radioButton)
+        
+        radioButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+                                        radioButton.topAnchor.constraint(equalTo: lastNameTextField.bottomAnchor, constant: 20),
+                                        radioButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+                                        radioButton.heightAnchor.constraint(equalToConstant: radioButton.frame.height),
+                                        radioButton.widthAnchor.constraint(equalToConstant: radioButton.frame.width)
+                                    ])
+        
+        radioButton.onSelect {
+            print("I'm selected.")
+            self.femaleLabel.text = NSLocalizedString("I'm female", comment: "Female gender comment")
+        }
+        
+        radioButton.onDeselect {
+            print("I'm deselected.")
+            self.femaleLabel.text = NSLocalizedString("I'm male", comment: "Male gender comment")
+        }
+        
+        return radioButton
+    }()
+
+    private lazy var femaleLabel: UILabel = {
+        let label = UILabel.init()
+        label.text = NSLocalizedString("I'm male", comment: "Male gender comment")
+        label.font = UIFont(name: label.font.fontName, size: 17)
+        view.addSubview(label)
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+                                        label.centerYAnchor.constraint(equalTo: femaleRadioButton.centerYAnchor),
+                                        label.leadingAnchor.constraint(equalTo: femaleRadioButton.trailingAnchor, constant: 20),
+                                        label.heightAnchor.constraint(equalToConstant: femaleRadioButton.frame.height),
+                                        label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
+            ])
+
+        return label
+    }()
+    
+    private lazy var birthdayDatePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.timeZone = NSTimeZone.local
+        datePicker.backgroundColor = UIColor.white
+        datePicker.addTarget(self, action: #selector(handlerDatePickerValueChanged(_:)), for: .valueChanged)
+        view.addSubview(datePicker)
+
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+                                        datePicker.topAnchor.constraint(equalTo: femaleLabel.bottomAnchor, constant: 20),
+                                        datePicker.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
+                                        datePicker.heightAnchor.constraint(equalToConstant: 200),
+                                        datePicker.widthAnchor.constraint(equalToConstant: 270)
+            ])
+
+        return datePicker
+    }()
     
     // MARK: - Object lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -91,19 +177,77 @@ class UserShowViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .save,
                                                                       target: self,
                                                                       action: #selector(handlerSaveButtonTap(_:)))
+        
+        let user = router?.dataStore?.user
+        firstNameTextField.text = user?.firstName
+        lastNameTextField.text = user?.lastName
+        
+        // Create mode
+        guard user != nil else {
+            birthdayDatePicker.date = Date()
+            femaleLabel.text = NSLocalizedString("I'm male", comment: "Male gender comment")
+            femaleRadioButton.deselect()
+            return
+        }
+        
+        // Edit mode
+        user!.isFemale ? femaleRadioButton.select() : femaleRadioButton.deselect()
+        birthdayDatePicker.date = (user?.birthday as Date?)!
+    }
+    
+    func textFieldCreate() -> UITextField {
+        let textField = UITextField(frame: CGRect.init(origin: .zero, size: .zero))
+        
+        textField.textAlignment = .left
+        textField.textColor = UIColor.black
+        textField.borderStyle = .roundedRect
+        textField.autocapitalizationType = .words
+        textField.autocorrectionType = .no
+        textField.delegate = self
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        textField.clearButtonMode = .whileEditing
+
+        self.view.addSubview(textField)
+        
+        return textField
     }
     
     
     // MARK: - Actions
     @objc func handlerSaveButtonTap(_ sender: UIBarButtonItem) {
-        if router?.dataStore?.user == nil {
-            let requestModel = UserShowModels.User.RequestModel()
-            interactor?.userCreate(withRequestModel: requestModel)
-        } else {
-            let requestModel = UserShowModels.User.RequestModel()
-            interactor?.userSave(withRequestModel: requestModel)
-        }
+        let codeID = (router?.dataStore?.user == nil) ? nil : router?.dataStore?.user!.codeID
+        
+        let requestModel = UserShowModels.User.RequestModel(formFields: UserShowModels.UserFormFields(codeID: codeID,
+                                                                                                      firstName: firstNameTextField.text!,
+                                                                                                      lastName: lastNameTextField.text!,
+                                                                                                      isFemale: femaleRadioButton.isSelected,
+                                                                                                      birthday: birthdayDatePicker.date))
+        
+        router?.dataStore?.user == nil ? interactor?.userCreate(withRequestModel: requestModel) : interactor?.userSave(withRequestModel: requestModel)
     }
+    
+    @objc func handlerDatePickerValueChanged(_ sender: UIDatePicker) {
+        let dateFormatter: DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy hh:mm a"
+        let selectedDate: String = dateFormatter.string(from: sender.date)
+        print("Selected value \(selectedDate)")
+    }
+}
+
+
+// MARK: - UITextFieldDelegate
+extension UserShowViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == firstNameTextField {
+            lastNameTextField.becomeFirstResponder()
+        } else {
+            lastNameTextField.resignFirstResponder()
+        }
+        
+        return true
+    }
+    
 }
 
 
